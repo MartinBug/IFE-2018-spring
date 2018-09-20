@@ -1,3 +1,9 @@
+*{
+    border: solid;
+}
+.row{
+    position: relative;
+}
 body{
     background-color: lightseagreen;
 }
@@ -17,7 +23,6 @@ b{
     float: left;
 }
 img{
-    padding: 30px;
     width: 400px;
     height: 400px;
 }
@@ -29,9 +34,23 @@ div.row{
     width: 100%;
 }
 div.column-2{
-    width:300px;
+    width:50%;
     background:  red;
     font-size: 1.5em;
+    float: left;
+}
+div.column-4{
+    width: 50%;
+    background:  yellow;
+    font-size: 1.5em;
+    float: left;
+
+}
+div.column-8{
+    width:50%;
+    background:  pink;
+    font-size: 1.5em;
+    float: left;
 }
 p{
     font-family:"Trebuchet MS", Verdana, sans-serif ;
@@ -49,4 +68,7 @@ p.p1{
 p.p2{
     color: green;
     font-style: oblique;
+}
+ul{
+    float: left;
 }

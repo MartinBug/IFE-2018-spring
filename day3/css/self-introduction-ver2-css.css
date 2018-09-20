@@ -1,0 +1,52 @@
+body{
+    background-color: lightseagreen;
+}
+div{
+    display: block;
+}
+h1{
+    font-size: 8em;
+    color: floralwhite;
+    text-align: center;
+    text-shadow: 4px 1px  blue,
+    4px -1px white;
+}
+b{
+    text-align: center;
+    text-decoration: blink, underline;
+    float: left;
+}
+img{
+    padding: 30px;
+    width: 400px;
+    height: 400px;
+}
+div.section{
+    width: 100%;
+    line-height: 240%;
+}
+div.row{
+    width: 100%;
+}
+div.column-2{
+    width:300px;
+    background:  red;
+    font-size: 1.5em;
+}
+p{
+    font-family:"Trebuchet MS", Verdana, sans-serif ;
+    color: #008;
+    font-size: 1.5em;
+    font-weight: bolder;
+    float: left;
+    text-align: center;
+}
+p.p1{
+    color: greenyellow;
+    font-style: italic;
+    text-indent: 50px;
+}
+p.p2{
+    color: green;
+    font-style: oblique;
+}

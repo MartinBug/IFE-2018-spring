@@ -1,0 +1,80 @@
+html,body{
+    padding: 100px;
+    background-color: lightseagreen;
+}
+*{
+    box-sizing: border-box;
+}
+.row{
+    position: relative;
+}
+
+div{
+    display: block;
+}
+h1{
+    font-size: 8em;
+    color: floralwhite;
+    text-align: center;
+    text-shadow: 4px 1px  blue,
+    4px -1px white;
+}
+b{
+    text-align: center;
+    text-decoration: blink, underline;
+    float: left;
+}
+/*div {
+    background-color: yellow;
+    background-image: linear-gradient(to bottom, yellow, #dddd00 50%, orange);
+    background-repeat: no-repeat;
+    background-position: 99% center;
+}*/
+div.row{
+    padding: 30px;
+    width: 100%;
+    background-color: yellow;
+    /*background-image: linear-gradient(to right, yellow, #dddd00 50%, orange);*/
+}
+div.column-2{
+    width:50%;
+    /*background:  red;*/
+    font-size: 1.5em;
+    float: left;
+}
+div.column-4{
+    width: 50%;
+    /*background:  yellow;*/
+    font-size: 1.5em;
+    float: left;
+
+}
+/*div.column-8{
+    width:50%;
+    background:  pink;
+    font-size: 1.5em;
+    float: left;
+}*/
+.center{
+    text-align: center;
+}
+p{
+    font-family:"Trebuchet MS", Verdana, sans-serif ;
+    color: #008;
+    font-size: 1.5em;
+    font-weight: bolder;
+    float: left;
+    text-align: center;
+}
+p.p1{
+    color: greenyellow;
+    font-style: italic;
+    text-indent: 50px;
+}
+p.p2{
+    color: green;
+    font-style: oblique;
+}
+ul{
+    float: left;
+}

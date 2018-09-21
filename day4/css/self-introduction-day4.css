@@ -18,6 +18,10 @@ h1{
     text-align: center;
     text-shadow: 4px 1px  blue,
     4px -1px white;
+    /*实现day4的任务1，学习使用background，使用集中式的书写属性方式*/
+    background-color: yellow;
+    background: url("../img/2.jpg") no-repeat right,
+    linear-gradient(to right, green, #dddd00 50%, orange);
 }
 b{
     text-align: center;
@@ -33,7 +37,7 @@ b{
 div.row{
     padding: 30px;
     width: 100%;
-    background-color: yellow;
+    /*background-color: yellow;*/
     /*background-image: linear-gradient(to right, yellow, #dddd00 50%, orange);*/
 }
 div.column-2{
@@ -41,13 +45,18 @@ div.column-2{
     /*background:  red;*/
     font-size: 1.5em;
     float: left;
+    /*分散式的书写background属性*/
+    background-color: orangered;
+    background-image: url("3.png");
+    /*height: 100px;*/
+                      /*linear-gradient(to right, green, #dddd00 50%, orange);*/
+    background-position: left ;
+    background-repeat: no-repeat;
 }
 div.column-4{
     width: 50%;
-    /*background:  yellow;*/
     font-size: 1.5em;
     float: left;
-
 }
 /*div.column-8{
     width:50%;

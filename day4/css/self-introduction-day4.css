@@ -34,13 +34,13 @@ b{
     background-repeat: no-repeat;
     background-position: 99% center;
 }*/
-div.row{
+.row{
     padding: 30px;
     width: 100%;
     /*background-color: yellow;*/
     /*background-image: linear-gradient(to right, yellow, #dddd00 50%, orange);*/
 }
-div.column-2{
+.column-2{
     width:50%;
     /*background:  red;*/
     font-size: 1.5em;
@@ -53,10 +53,19 @@ div.column-2{
     background-position: left ;
     background-repeat: no-repeat;
 }
-div.column-4{
+.column-4{
+    padding: 10px;
     width: 50%;
     font-size: 1.5em;
     float: left;
+    border: 2px dashed darkred;
+    border-left: 10px solid greenyellow;
+}
+div.c4-list {
+    height: 300px;
+    border-style: inset;
+    border-color: #000;
+    border-width: 4px;
 }
 /*div.column-8{
     width:50%;
@@ -85,5 +94,37 @@ p.p2{
     font-style: oblique;
 }
 ul{
+    list-style-type: squre;
+    list-style-image: url('http://www.w3school.com.cn/i/eg_arrow.gif');
+    list-style-position: inside;
     float: left;
+}
+li.bottom-li{
+    list-style: circle inside;
+}
+h3{
+    display: block;
+    font-size: 50px;
+    font-family: "STHupo","Microsoft YaHei UI";
+}
+a:link {
+    color: blue;
+}
+a:visited {
+    color: gray;
+}
+a:hover {
+    color: red;
+}
+a:active {
+    color: yellow;
+}
+a:link, a:visited{
+    text-decoration: none;
+}
+a:hover, a:active{
+    text-decoration: underline;
+}
+a{
+    background-color: green;
 }

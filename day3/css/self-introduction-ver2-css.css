@@ -27,11 +27,11 @@ img{
     height: 400px;
 }
 div.section{
-    overflow: hidden;
     width: 100%;
     line-height: 240%;
 }
 div.row{
+    overflow: hidden;
     width: 100%;
     float: left;
 }

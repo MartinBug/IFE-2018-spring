@@ -27,24 +27,31 @@ img{
     height: 400px;
 }
 div.section{
+    overflow: hidden;
     width: 100%;
     line-height: 240%;
 }
 div.row{
     width: 100%;
+    float: left;
 }
 div.column-2{
     width:50%;
     background:  red;
     font-size: 1.5em;
     float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 div.column-4{
     width: 50%;
     background:  yellow;
     font-size: 1.5em;
     float: left;
-
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 div.column-8{
     width:50%;

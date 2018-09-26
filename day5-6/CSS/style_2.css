@@ -1,0 +1,50 @@
+body{
+    background: url("../img/bground1.png") repeat-y;
+    background-size: 26%;
+}
+h1{
+    /*text-align: right;*/
+
+    color: white;
+    font-size: 5em;
+}
+h2{
+
+    font-size: 3em;
+}
+h3{
+    font-size: 2em;
+}
+p{
+    font-size: 2em;
+}
+.info-title{
+    font-style: normal;
+    text-align: center;
+    /*background-color: dodgerblue;*/
+    /*比较使用该div块的背景色和使用“伪列”的效果*/
+    float:left;
+    width:20%;
+    height: 100%;
+    padding: 3%;
+}
+.main{
+    padding: 1%;
+    float: right;
+    width: 70%;
+}
+a:active{
+    color: red;
+}
+a:hover{
+    background-color:yellow;
+}
+a:visited{
+    color: gray;
+}
+a:link, a:visited{
+    text-decoration: none;
+}
+a:hover, a:active{
+    text-decoration: underline;
+}

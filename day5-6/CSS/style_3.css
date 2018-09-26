@@ -1,0 +1,55 @@
+/*body{*/
+    /*background: url("../img/bground1.png") repeat-y;*/
+    /*background-size: 26%;*/
+/*}*/
+h1{
+    color: white;
+    font-size: 5em;
+}
+.row h2{
+    box-sizing: border-box;
+    border-bottom-color: white;
+    background-color: lightskyblue;
+    display: inline-block;
+    float: left;
+    font-size: 3em;
+    padding: 1em;
+    margin: 0;
+    height: 4em;
+}
+h3{
+    float: left;
+    /*padding: 1em;*/
+    font-size: 2em;
+    width: inherit;
+    display: inline-block;
+    margin: 0.5em;
+}
+p{
+    float: left;
+    font-size: 2em;
+    margin:0.5em;
+    /*padding: 1em    ;*/
+}
+.info-title{
+    text-align: left;
+    padding: 3%;
+    background-image: linear-gradient(to right, dodgerblue, #dddd00 90%, orange) ;
+}
+.row{
+    overflow: hidden;
+    box-sizing: border-box;
+}
+/*边框颜色处理*/
+.row, h2{
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightskyblue;
+}
+
+.little-column{
+    padding-left: 2em;
+    /*display: inline-block;*/
+    overflow: hidden;
+    box-sizing: border-box;
+}

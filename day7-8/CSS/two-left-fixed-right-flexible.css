@@ -1,0 +1,108 @@
+/*基本的CSS描述,主要描述：背景颜色、text格式*/
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.left{
+    background-color: blue;
+}
+.right {
+    background-color: #a60000;
+}
+#header {
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    background-color: gray;
+}
+.footer-wrapper{
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    background-color: gray;
+}
+/*-------------------------float实现-----------------------*/
+/** {*/
+    /*box-sizing: border-box;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+/*}*/
+/*html,body {*/
+    /*min-width: 400px;*/
+/*}*/
+
+/*#container {*/
+    /*!*display: inline-block;*!*/
+    /*overflow: auto;*/
+/*}*/
+/*.column {*/
+    /*!*width: 100%;*!*/
+/*}*/
+/*.left {*/
+    /*float: left;*/
+    /*width: 300px;*/
+    /*padding: 0 2em;*/
+/*}*/
+/*.right {*/
+    /*float: left;*/
+    /*width:  calc(100% - 300px);*/
+    /*padding: 0 2em;*/
+/*}*/
+
+/*!*-------------------------定位实现-----------------------*!*/
+/*html, body {*/
+    /*!*height: 100%;*!*/
+/*}*/
+/*body {*/
+    /*background-image: url("../faux-columns-img1.png");*/
+    /*background-size: 300px;*/
+    /*!*width: 300px;*!*/
+    /*background-repeat: repeat-y;*/
+    /*background-position: left;*/
+/*}*/
+/*#container {*/
+    /*width: 100%;*/
+    /*position: relative;*/
+/*}*/
+/*.column {*/
+    /*height: auto;*/
+/*}*/
+/*.left {*/
+    /*width: 300px;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*padding: 0 2em;*/
+    /*!*!*为了让颜色充满整列*!*!!*--------不太靠谱，容易有BUG，还是用了伪列来做的，改在了body里面*!*/
+    /*!*padding-bottom: 100%;*!*/
+    /*!*margin-bottom: -100%;*!*/
+    /*!*z-index: -1;*!*/
+/*}*/
+/*.right {*/
+    /*width: calc(100% - 300px);*/
+    /*min-width: 100px;*/
+    /*margin-left: 300px;*/
+    /*height: auto;*/
+/*}*/
+/*!*问题：为什么right没有撑开父元素container，因为高度值设定为了100%？*!*/
+/*!*好像是的。。。。检验了一下，就发现不对了。这个body\html的100%好像指的是屏幕上浏览器的100大小。*!*/
+
+/*!*-------------------------flex实现-----------------------*!*/
+* {
+
+}
+#container {
+    display: flex;
+    flex-direction: row;
+
+}
+.left {
+    width: 300px;
+}
+.right {
+    flex: 1;
+    /*占剩余空间之后的1/1*/
+}

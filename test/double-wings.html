@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>双飞翼布局</title>
+  <style>
+    .main {
+      float: left;
+      width: 100%;
+    }
+    }
+    #bd {
+      padding: 0 230px 0 190px;
+    }
+    .sub {
+      float: left;
+      width: 190px;
+      margin-left: -100%;
+      position: relative;
+      left: -190px;    }
+    .extra {
+      float: left;
+      width: 230px;
+      margin-left: -230px;
+      position: relative;
+      right: -230px;    }
+    #main-content {    margin: 0 230px 0 190px;}
+  </style>
+</head>
+<body>
+<div id="page">
+  <div id="hd"></div>
+  <div id="bd">
+    <div id="main" class="column">
+      <div id="main-content">#main
+        dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+      </div>
+    </div>
+    <!--<div class="main">d</div>-->
+    <div class="sub">subsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsubsub</div>
+    <div class="extra">eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</div>
+  </div>
+  <div id="ft"></div>
+</div>
+</body>
+</html>

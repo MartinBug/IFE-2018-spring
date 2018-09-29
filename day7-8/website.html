@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="CSS/website-static.css">
+  <title>编写的样式html</title>
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <div class="header-navigation">
+      <a href="#">Github</a>
+      <a href="#">Register</a>
+      <a href="#">Login</a>
+    </div>
+  </div>
+</header>
+<div id="banner">
+  <ul>
+    <li>1</li>
+    <li class="active-banner">2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+</div>
+<section id="main-info">
+  <ul>
+    <!--<li><a href="#" class="active">HOME</a></li>-->
+    <!--<li><a href="#">PROFILE</a></li>-->
+    <!--<li><a href="#">ABOUT</a></li>-->
+    <li class="active">HOME</li>
+    <li>PROFILE</li>
+    <li>ABOUT</li>
+  </ul>
+</section>
+<section id="content">
+  <section class="active-panel">
+    <!--<div class="row1">-->
+    <div>This is content1</div>
+    <div>Maybe content2</div>
+    <div>content3</div>
+    <div>content4</div>
+    <div>content5</div>
+    <div>content6</div>
+    <div>content7</div>
+    <div>content8</div>
+    <div>content9</div>
+    <div>content10</div>
+    <!--</div>-->
+  </section>
+  <section>
+    <div>This is content1</div>
+    <div>Maybe content2</div>
+    <div>content3</div>
+    <div>content4</div>
+    <div>content5</div>
+    <div>content6</div>
+  </section>
+  <section>
+    <div>This is content1</div>
+    <div>Maybe content2</div>
+    <div>content3</div>
+    <div>content4</div>
+  </section>
+
+</section>
+<footer>
+  <span>&copy</span> 2018 ife.baidu.com
+</footer>
+
+<script>
+    var tabs = document.querySelectorAll('#main-info li');
+    var panels = document.querySelectorAll('#content section');
+
+    for (i = 0; i < tabs.length; i++) {
+        var tab = tabs[i];
+        setTabHandler(tab, i);
+    }
+
+    function setTabHandler(tab, tabPos) {
+        tab.onclick = function () {
+            for (i = 0; i < tabs.length; i++) {
+                if (tabs[i].getAttribute('class')) {
+                    tabs[i].removeAttribute('class');
+                }
+            }
+
+            tab.setAttribute('class', 'active');
+
+            for (i = 0; i < panels.length; i++) {
+                if (panels[i].getAttribute('class')) {
+                    panels[i].removeAttribute('class');
+                }
+            }
+
+            panels[tabPos].setAttribute('class', 'active-panel');
+        }
+    }
+</script>
+
+</body>
+</html>

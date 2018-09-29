@@ -1,0 +1,113 @@
+.active-panel {
+    z-index: 1;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body {
+    font-family: "Microsoft YaHei UI", serif;
+}
+header {
+    height: 60px;
+    color: white;
+    background-color: darkslategray;
+    position: relative;
+}
+header .header-content {
+    width: 800px;
+    position: relative;
+    height: 100%;
+    color: white;
+    margin: 0 auto;
+    background-image: url("../2.jpg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: auto;
+}
+header .header-navigation {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+header .header-navigation a {
+    color: white;
+    padding: 5px;
+}
+#banner {
+    height: 250px;
+    background-color: green;
+    position: relative;
+}
+#banner ul {
+    width: 100px;
+    /*因为li直接向右float会导致1234倒序，所以先将li的容器float:right; 再让li float:left;*/
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    display: inline-block;
+    /*vertical-align: top;*/
+}
+#banner li {
+    /*flex: 1;*/
+    /*为了实现元素top对齐或是底部对齐，不能设置*/
+    width: 10px;
+    text-align: center;
+    list-style: none;
+    background-color: lightgreen;
+    border: 1px solid gray;
+    display: inline-block;
+    /*vertical-align: top;*/
+    margin: 0 3px;
+}
+#banner .active-banner {
+    /*height: 50px;*/
+    background-color: greenyellow;
+    padding-top: 10px;
+}
+#main-info {
+    padding: 0 calc((100% - 800px)/2);
+    padding-top: 10px;
+}
+#main-info li {
+    display: inline-block;
+    margin: 0;
+    padding: 10px 10px;
+    background-color: lightgray;
+    border: solid darkgray 1px;
+    border-top-left-radius:0.7em;
+    border-top-right-radius:0.7em;
+}
+#main-info li.active{
+    background-color: #fff;
+    border-bottom-color: white;
+    border-bottom-width: 5px;
+    z-index: 2;
+}
+#content {
+    border-top: solid gray 1px;
+    margin-top: -1px;
+    padding: 0 calc((100% - 800px)/2);
+        /*border-bottom: 2px gray solid;*/
+}
+#content section {
+    display: none;
+}
+#content section.active-panel {
+    display: flex;
+    flex-wrap: wrap;
+}
+#content section div {
+    flex: 2;
+    padding: 80px;
+    margin: 5px;
+    border: solid gray 1px;
+}
+footer {
+    padding: 10px;
+    height: 60px;
+    text-align: center;
+    background-color: darkslategray;
+
+}

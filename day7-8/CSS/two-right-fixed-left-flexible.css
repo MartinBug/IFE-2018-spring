@@ -7,7 +7,7 @@
     padding: 0;
 }
 .left{
-    background-color: blue;
+    /*background-color: blue;*/
 }
 .right {
     background-color: #a60000;
@@ -86,7 +86,7 @@ body {
 .left {
     width: calc(100% - 300px);
     min-width: 100px;
-    margin-right: 300px;
+    margin-right: auto;
 }
 /*!*问题：为什么right没有撑开父元素container，因为高度值设定为了100%？*!*/
 /*!*好像是的。。。。检验了一下，就发现不对了。这个body\html的100%好像指的是屏幕上浏览器的100大小。*!*/

@@ -1,0 +1,260 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-width: 500px;
+}
+
+/*----------------第一列 primary menu-------------*/
+div.pri-menu {
+    width: 100px;
+    height: 1200px; /*暂定*/
+    min-height: 100%;
+    float: left;
+    background-color: rgb(28, 36, 50);
+}
+
+div.button-item {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    padding: 20px 20px;
+}
+
+div.item {
+    flex: 1;
+    width: 60px;
+    height: 60px;
+    margin: 10px 0;
+    position: relative;
+    border-radius: 50%;
+}
+
+div.item:nth-of-type(1) {
+    background-color: rgb(0, 147, 245);
+}
+
+div.item:nth-of-type(2) {
+    background-color: rgb(155, 99, 230);
+}
+
+div.item:nth-of-type(3) {
+    background-color: rgb(250, 29, 0);
+}
+
+div.item:nth-of-type(4) {
+    border: rgb(43, 55, 73) solid 2px;
+}
+
+.item-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bottom-actions {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    height: 16px;
+    width: 100%;
+    /*padding: 16px 34px;*/
+}
+
+.bottom-actions .grid {
+    margin: 0 8px 0 26px;
+    float: left;
+}
+
+.bottom-actions .settings {
+    margin: 0 16px 0 8px;
+    float: left;
+}
+
+/*----------------第二列 secondary menu-------------*/
+.sec-menu {
+    width: 250px;
+    height: 800px;
+    float: left;
+    padding: 30px;
+    background-color: rgb(33, 43, 61);
+    display: inline-block;
+}
+
+.sec-menu h4 {
+    color: rgb(69, 82, 101);
+    width: 100%;
+    padding-right: 17px;
+    background: url("../img/Settings.png") no-repeat right;
+}
+
+.menu, .your-products, .dashboard {
+    display: inline-block;
+}
+.your-products, .dashboard {
+    display: inline-block;
+    border-top: rgb(36,47,66) solid 2px;
+}
+.sec-menu h5 {
+    padding: 12px 0;
+    color: rgb(84,97,116);
+}
+div.col-1 {
+    width: calc(190px - 32px);
+    height: 40px;
+    font-size: 9px;
+    padding: 12px 0;
+    color: rgb(166, 175, 189);
+    float: left;
+}
+
+div.col-2 {
+    width: 32px;
+    height: 24px;
+    margin: 8px 0;
+    font-size: 9px;
+    float: right;
+    text-align: center;
+    line-height: 24px;
+}
+
+div.score {
+    color: #ffffff;
+    background-color: rgb(0, 147, 243);
+    border: rgb(0, 147, 243) solid 1px;
+    border-radius: 12px;
+}
+.your-products .col-1 {
+    padding-left: 30px;
+}
+.your-products .books {
+    background: url("../img/book icon.png") left no-repeat;
+}
+.your-products .turials {
+    background: url("../img/Video Camera icon.png") left no-repeat;
+}
+.your-products .stocks {
+    background: url("../img/Stocks icon.png") left no-repeat;
+}
+.your-products .infographics {
+    background: url("../img/Infographics icon.png") left no-repeat;
+}
+
+div.goals-box {
+    width: 250px;
+    height: 60px;
+    padding: 0 30px;
+    position: fixed;
+    bottom: 0;
+    left: 100px;
+    background-color: rgb(33, 43, 61);
+}
+
+div.goals-item {
+    color: #ffffff;
+    font-size: 9px;
+    float: left;
+    padding: 10px 0;
+}
+
+div.goals-money {
+    color: #ffffff;
+    font-size: 9px;
+    float: right;
+    padding: 10px 0;
+}
+
+div.monthly-goals {
+    height: 4px;
+    width: 190px;
+    background-color: rgb(43, 55, 73);
+    border-radius: 2px;
+    float: left;
+    position: relative;
+}
+
+div.goals-gotten {
+    height: 4px;
+    width: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(to right, rgb(145, 60, 231), rgb(165, 130, 229));
+    border-radius: 2px;
+}
+
+/*----------------右边白色上方相对浏览器固定的 profile, topbar-------------*/
+div.top-bar {
+    height: 80px;
+    width: calc(100% - 350px);
+    min-width: 350px;
+    position: absolute;
+    top: 0;
+    left: 350px;
+}
+div.top-bar h3 {
+    padding: 30px;
+}
+div.profile {
+    width: 250px;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 10px 10px;
+}
+div.photo {
+    height: 60px;
+    width: 60px;
+    border: white 1px solid;
+    border-radius: 50%;
+    background: url("../img/photo.jpg") no-repeat center;
+    background-size: contain;
+    position: relative;
+    float: left;
+}
+div.photo .status-1 {
+    height: 16px;
+    width: 16px;
+    border: white 2px solid;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+div.photo .status-2 {
+    height: 12px;
+    width: 12px;
+    border: rgb(0,175,108) 2px solid;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+div.name-role {
+    height: 40px;
+    padding: 8px 15px;
+    float: left;
+}
+div.dropdown-button {
+    float: left;
+    height: 60px;
+    width: 15px;
+    position: relative;
+}
+.dropdown {
+    position: absolute;
+    top: 25px;
+}
+/*----------------右边白色第一列，chat -------------*/
+
+
+/*----------------右边白色第二列，open-chat -------------*/

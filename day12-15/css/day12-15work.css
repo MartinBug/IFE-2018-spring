@@ -11,10 +11,13 @@ html, body {
 /*----------------第一列 primary menu-------------*/
 div.pri-menu {
     width: 100px;
-    height: 1200px; /*暂定*/
+    height: 1000px; /*暂定*/
     min-height: 100%;
     float: left;
     background-color: rgb(28, 36, 50);
+    transform: none;
+    /*display: inline;*/
+    /*position: relative;*/
 }
 
 div.button-item {
@@ -60,10 +63,12 @@ div.item:nth-of-type(4) {
 
 .bottom-actions {
     position: fixed;
-    bottom: 20px;
+    bottom: 0;
     left: 0;
-    height: 16px;
-    width: 100%;
+    height: 72px;
+    width: 100px;
+    background-color: rgb(28, 36, 50);
+    padding: 25px 0;
     /*padding: 16px 34px;*/
 }
 
@@ -80,11 +85,12 @@ div.item:nth-of-type(4) {
 /*----------------第二列 secondary menu-------------*/
 .sec-menu {
     width: 250px;
-    height: 800px;
+    height: 1000px;
     float: left;
     padding: 30px;
     background-color: rgb(33, 43, 61);
     display: inline-block;
+    overflow: hidden;
 }
 
 .sec-menu h4 {
@@ -97,15 +103,18 @@ div.item:nth-of-type(4) {
 .menu, .your-products, .dashboard {
     display: inline-block;
 }
+
 .your-products, .dashboard {
     display: inline-block;
-    border-top: rgb(36,47,66) solid 2px;
+    border-top: rgb(36, 47, 66) solid 2px;
 }
+
 .sec-menu h5 {
     padding: 12px 0;
-    color: rgb(84,97,116);
+    color: rgb(84, 97, 116);
 }
-div.col-1 {
+
+.sec-menu div.col-1 {
     width: calc(190px - 32px);
     height: 40px;
     font-size: 9px;
@@ -114,7 +123,7 @@ div.col-1 {
     float: left;
 }
 
-div.col-2 {
+.sec-menu div.col-2 {
     width: 32px;
     height: 24px;
     margin: 8px 0;
@@ -130,18 +139,23 @@ div.score {
     border: rgb(0, 147, 243) solid 1px;
     border-radius: 12px;
 }
-.your-products .col-1 {
+
+.your-products div.col-1 {
     padding-left: 30px;
 }
+
 .your-products .books {
     background: url("../img/book icon.png") left no-repeat;
 }
+
 .your-products .turials {
     background: url("../img/Video Camera icon.png") left no-repeat;
 }
+
 .your-products .stocks {
     background: url("../img/Stocks icon.png") left no-repeat;
 }
+
 .your-products .infographics {
     background: url("../img/Infographics icon.png") left no-repeat;
 }
@@ -198,9 +212,11 @@ div.top-bar {
     top: 0;
     left: 350px;
 }
+
 div.top-bar h3 {
     padding: 30px;
 }
+
 div.profile {
     width: 250px;
     height: 80px;
@@ -209,6 +225,7 @@ div.profile {
     right: 0;
     padding: 10px 10px;
 }
+
 div.photo {
     height: 60px;
     width: 60px;
@@ -219,6 +236,7 @@ div.photo {
     position: relative;
     float: left;
 }
+
 div.photo .status-1 {
     height: 16px;
     width: 16px;
@@ -229,32 +247,341 @@ div.photo .status-1 {
     right: 0;
     bottom: 0;
 }
+
 div.photo .status-2 {
     height: 12px;
     width: 12px;
-    border: rgb(0,175,108) 2px solid;
+    border: rgb(0, 175, 108) 2px solid;
     border-radius: 50%;
     background-color: white;
     position: absolute;
     right: 0;
     bottom: 0;
 }
-div.name-role {
+
+.profile div.name-role {
     height: 40px;
     padding: 8px 15px;
     float: left;
 }
+
 div.dropdown-button {
     float: left;
     height: 60px;
     width: 15px;
     position: relative;
 }
+
 .dropdown {
     position: absolute;
     top: 25px;
 }
+
 /*----------------右边白色第一列，chat -------------*/
 
+.chat-section {
+    width: calc(100% - 350px);
+    height: 800px;
+    /*暂定高度*/
+    float: left;
+}
+
+div.top-copy {
+    width: 100%;
+    height: 80px;
+}
+
+.left-col {
+    width: 400px;
+    height: calc(100% - 80px);
+    /*暂定高度*/
+    float: left;
+    border: rgb(229, 233, 236) solid 1px;
+}
+
+.search-box {
+    width: 100%;
+    height: 70px;
+    padding: 16px 30px;
+    border: rgb(229, 233, 236) solid 1px;
+}
+
+.search {
+    width: 340px;
+    height: 36px;
+    padding: 12px;
+    border: rgb(229, 233, 236) solid 1px;
+    border-radius: 4px;
+    background: url("../img/search icon.png") no-repeat right 10px bottom 10px;
+}
+
+.chats-list {
+    width: 100%;
+    height: 900px;
+}
+
+.chat {
+    width: 400px;
+    height: 130px;
+    padding: 15px 30px;
+    border-bottom: rgb(229, 233, 236) solid 1px;
+}
+
+div.chat-person {
+    width: 340px;
+    height: 50px;
+}
+
+div.chat-person div.chat-avatar {
+    width: 50px;
+    height: 50px;
+    border: solid 2px white;
+    border-radius: 50%;
+    background: url("../img/photo.jpg") no-repeat center;
+    background-size: cover;
+    float: left;
+}
+
+div.chat-person div.chat-name-role {
+    width: 180px;
+    height: 50px;
+    padding: 5px 20px;
+    float: left;
+}
+
+
+div.chat-name-role .chat-online-status-person {
+    margin: 7px 0;
+    margin-right: 5px;
+    width: 8px;
+    height: 8px;
+    border: rgb(0, 165, 254) solid 1px;
+    border-radius: 50%;
+    background: rgb(0, 165, 254);
+    float: left;
+}
+.chat-outline-status-person {
+    display: none;
+}
+div.chat-name-role h4 {
+    float: left;
+}
+div.chat-name-role h4.chat-online-status-name {
+    color: rgb(0, 165, 254);
+}
+
+div.chat-name-role p {
+    float: left;
+    height: 22px;
+    width: 180px;
+}
+
+div.chat-last-time {
+    width: 100px;
+    height: 50px;
+    padding: 10px 0;
+    float: right;
+    text-align: right;
+    vertical-align: middle;
+}
+
+div.chat-message {
+    float: left;
+    width: 340px;
+    padding: 10px 0;
+}
+
+div.chat-message p {
+    font-size: 8px;
+    float: left;
+    width: 290px;
+}
+
+div.chat-message-total {
+    float: right;
+    /*width: 24px ;*/
+    max-width: 50px;
+    text-align: center;
+    color: #ffffff;
+    background-color: rgb(0, 147, 243);
+    border: rgb(0, 147, 243) solid 1px;
+    border-radius: 11px;
+}
 
 /*----------------右边白色第二列，open-chat -------------*/
+div.right-col {
+    width: calc(100% - 400px);
+    min-width: 300px;
+    height: calc(100% - 80px);
+    float: left;
+}
+
+div.current-chat {
+    /*padding: 20px 25px;*/
+    width: 100%;
+    height: 800px;
+}
+div.chat-information {
+    padding: 20px 25px;
+    height: 70px;
+    width: calc(100% - 0);
+    min-width: 400px;
+    border-bottom: rgb(229, 233, 236) solid 1px;
+    border-top: rgb(229, 233, 236) solid 1px;
+    /*overflow: hidden;*/
+}
+div.chat-information div.name {
+    float: left;
+    padding: 4px 0;
+}
+div.current-chat-status {
+    width: 8px;
+    height: 8px;
+    margin: 11px 10px;
+    background-color: green;
+    border: green solid 1px;
+    border-radius: 50%;
+    float: left;
+    vertical-align: center;
+}
+div.chat-page-number {
+    width: 170px;
+    height: 30px;
+    float: right;
+    /*display: inline-block;*/
+}
+div.chat-page-number .show-page {
+    width: 80px;
+    height: 30px;
+    padding: 5px 0;
+    float: left;
+    text-align: center;
+    border-left: rgb(229, 233, 236) solid 2px;
+}
+.button{
+    float: left;
+    width: 36px;
+    height: 30px;
+    padding: 0;
+}
+.arrow-left {
+    background: url("../img/arrow left.png") no-repeat center;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.arrow-right {
+    background: url("../img/arrow right.png") no-repeat center;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.tools {
+    float: right;
+    margin-right: 20px ;
+}
+.user {
+    background: url("../img/User icon.png") no-repeat center;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.trash {
+    background: url("../img/Trash icon.png") no-repeat center;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.upload {
+    background: url("../img/Upload icon.png") no-repeat center;
+}
+
+/*div.chat*/
+/*<div class="chat-avatar"></div>*/
+
+.open-chat h4 {
+    float: left;
+}
+.chat-message-box {
+    width: 100%;
+    min-height: 50px;
+    padding: 10px 30px;
+    display: inline-block;
+    position: relative;
+}
+
+.chat-message-box .chat-avatar {
+    width: 50px;
+    height: 50px;
+    border: solid 2px white;
+    border-radius: 50%;
+    background: url("../img/photo.jpg") no-repeat center;
+    background-size: cover;
+    float: left;
+}
+.message {
+    width: calc(100% - 110px);
+    padding: 0 20px;
+    float: left;
+}
+.chat-message-box p {
+    float: left;
+    width: 100%;
+
+    font-size: 8px;
+}
+div.chat-time {
+    width: calc(100% - 200px);
+    padding: 0 10px;
+    float: left;
+    /*font-style: italic;*/
+    font-size: 10px;
+}
+div.chat-time:after {
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.chat-message-box:nth-of-type(3) {
+    border-bottom: rgb(229, 233, 236) solid 1px;
+}
+.chat-date {
+    height: 20px;
+    width: 80px;
+    font-size: 10px;
+    padding: 5px 10px;
+    background-color: white;
+    position: absolute;
+    bottom: -5px;
+    left: calc(50% - 40px);
+}
+
+.message .chat-img-box {
+    width: 150px;
+    height: 150px;
+    float: left;
+    background: url("../img/photo.jpg") no-repeat center;
+    background-size: cover;
+    border-radius: 5px;
+}
+.open-logo {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: rgba(45,59,70,0.7);
+    visibility: hidden;
+}
+.open-logo .logo {
+    width: 50px;
+    height: 50px;
+    background: url("../img/open-logo.png") no-repeat center;
+    background-color: rgba(45,59,70,0.7);
+    position: absolute;
+    top:calc(50% - 25px);
+    left: calc(50% - 25px);
+    border-radius: 50%;
+    visibility: hidden;
+}
+.chat-img-box:hover .open-logo, .chat-img-box:hover .logo {
+    visibility: visible;
+}
+

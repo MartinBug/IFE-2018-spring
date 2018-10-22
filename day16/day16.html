@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>IFE ECMAScript</title>
+</head>
+<body>
+<input id="first-number" type="number" value="0" placeholder="第一个数字">
+<input id="second-number" type="number" value="0" placeholder="第二个数字">
+<button id="add-btn">加</button>
+<button id="minus-btn">减</button>
+<button id="times-btn">乘</button>
+<button id="divide-btn">除</button>
+<p id="result">运算结果</p>
+<script>
+    // console.log(document.getElementById("content-wrapper").innerHTML);
+    function Calculate(num1,num2,func) {
+        var result = func;
+        debugger
+        num1 = num1.value;
+        num2 = num2.value;
+        // debugger
+        switch (func) {
+            case "add": result = num1 + num2; break;
+            case "minus": result = num1 - num2; break;
+            case "times": result = num1 * num2; break;
+            case "divide": result = num1 / num2; break;
+            default: result = 0;
+        }
+        // alert(num1);
+            document.getElementById("result").innerText = "jieguoshi " + result;
+    }
+    var a = document.getElementById("first-number"), b = document.getElementById("second-number");
+
+    document.getElementById("add-btn").addEventListener('click', function () {
+        Calculate(a, b,  "add")
+        // Calculate(Number(a.value), Number(b.value), "add")
+        // 从两个input用getelementbyid得到的是dom对象，处理一：到函数里面之后再对num1\num2对象取数值，然后进行计算；
+        // 处理二：往Calculate传传参数的时候就取了a，b的value，且Number取为数值
+    })
+    document.getElementById('minus-btn').addEventListener('click', function () {
+        Calculate(a, b, "minus")
+    })
+    document.getElementById('times-btn').addEventListener('click', function () {
+        Calculate(a, b, "times")
+    })
+    document.getElementById('divide-btn').addEventListener('click',function () {
+        Calculate(a, b, "divide")
+    })
+
+</script>
+</body>
+</html>

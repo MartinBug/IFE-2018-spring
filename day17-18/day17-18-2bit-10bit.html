@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>IFE ECMAScript</title>
+</head>
+<body>
+<input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+<input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+<button id="trans-btn">转化为二进制</button>
+<p id="result">运算结果</p>
+<script>
+
+    function dec2bin(decNumber) {
+        // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+        //传入的是 decNumber = inputNumber.value 字符串类型，inputNumber 是DOM对象类型
+        var tempt = Number(decNumber);
+        var binaryNumberString = "";
+        for (var i = 0; tempt > 0; i++) {
+            binaryNumberString = (tempt % 2) + binaryNumberString;
+            tempt = Math.floor(tempt / 2);
+        }
+        return binaryNumberString;
+    }
+
+    // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+    // Some coding
+    var inputNumber = document.getElementById("dec-number");
+    var result = document.getElementById("result");
+    var binBit = document.getElementById("bin-bit");
+
+    document.getElementById("trans-btn").onclick = function () {
+        if (isNumberCorrect(inputNumber.value) && isNumberCorrect(binBit.value) && Number(parseFloat(binBit.value)) > 0) {
+            console.log("input is correct");
+            // result.innerText = dec2bin(inputNumber.value);
+            // debugger
+            // result.innerText = "计算结果为" + dec2bin(inputNumber.value);
+            result.innerText = "计算结果为" + binBitDisplay( dec2bin(inputNumber.value), binBit.value );
+        } else {
+            console.log("input is wrong");
+            result.innerText = "输入有误，请重新输入";
+        }
+    }
+
+    function isNumberCorrect(inputData) {
+        //检测 输入的是否是数字， 是否非负数， 是否是整数
+        // debugger
+        if (parseFloat(inputData).toString() === "NaN" || Number(parseFloat(inputData)) < 0 || Number(parseFloat(inputData)) % 1 !== 0) {
+            return false;
+        } else {
+            //满足非负整数
+            return true;
+        }
+    }
+
+    function binBitDisplay(numberInString, binBItInString) {
+        var binBItInNumber = Number(binBItInString);
+        if ( numberInString.length > binBItInNumber){
+            console.log("输入的二进制数字位数太小了");
+            return numberInString;
+        } else {
+            for (let i = 0; i < (binBItInNumber - numberInString.length); i++) {
+                numberInString = "0" + numberInString;
+            }
+        }
+        return numberInString;
+
+        
+    }
+
+</script>
+</body>
+</html>

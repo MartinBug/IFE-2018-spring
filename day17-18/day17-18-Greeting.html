@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Greeting</title>
+  <link rel="stylesheet" href="css/self-introduction-day4.css" type="text/css">
+  <!--<link rel="script" href="self-intro-day4ver.js">-->
+</head>
+<body>
+<div><h1>个人主页</h1></div>
+<!-- 用<div>元素实现 -->
+<div class="section">
+  <h3><a href="https://github.com/MartinBug" target="_blank">wuli个人主页</a></h3>
+  <button class="button" id="hello-button1">跟我打招呼啊11111</button>
+  <button class="button" id="hello-button2">跟我打招呼啊22222</button>
+  <p id="hello-message">
+  </p>
+  <button class="button" id="hobby-button">你猜猜我的爱好是什么</button>
+  <p id="hobby">
+  </p>
+  <div class="row">
+    <div class="column-2 center"><h2>name</h2></div>
+    <div class="column-4"><p>Feihong Wu</p></div>
+    <!--         <div class="column-8"><img src="图片1.jpg"></div> -->
+  </div>
+  <div class="row">
+    <div class="column-2 center"><h2>Tel</h2></div>
+    <div class="column-4"><p class="p1">1234556789</p></div>
+  </div>
+  <div class="row">
+    <div class="column-2 center"><h2>E-mail</h2></div>
+    <div class="column-4"><p class="p2">1234556789@126.com</p></div>
+  </div>
+  <div class="row">
+    <div class="column-2 center"><h2>Educational Experience</h2></div>
+    <div class="column-4">
+      <p>university<br/>
+        university
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column-2 center"><h2>Project Experience</h2></div>
+    <div class="column-4 c4-list">
+      <ul>
+        <li>
+          项目A，一些描述
+        </li>
+        <li>
+          项目B，一些描述
+        </li>
+        <li>
+          项目C，一些描述
+        </li>
+        <li class="bottom-li">
+          项目D，一些描述
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<script>
+var time = new Date();
+// if ( time.getHours() )
+switch ( true ) {
+    case time.getHours()<5 && time.getHours()>18 : alert("晚上好！"); break;
+    case time.getHours()<12 && time.getHours()>4 : alert("早上好！"); break;
+    case time.getHours()<14 && time.getHours()>11 : alert("中午好！"); break;
+    case time.getHours()<19 && time.getHours()>13 : alert("下午好！"); break;
+    default: alert("hello");
+}
+
+    document.getElementById("hello-button1").onclick = function () {
+        document.getElementById("hello-message").innerHTML = "Hello!";
+    }
+    //也不知道写事件的这两种方式哪个好一点
+    document.getElementById("hello-button2").addEventListener("click", function () {
+        document.getElementById("hello-message").innerText = "lalalaalalalallalaalal";
+    })
+    document.getElementById("hobby-button").addEventListener("click", function () {
+        document.getElementById("hobby").innerHTML = "My hobby is study!";
+    })
+
+
+
+</script>
+</body>
+</html>

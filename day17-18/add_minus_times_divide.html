@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>IFE ECMAScript</title>
+</head>
+<body>
+<input id="first-number" type="number" value="0" placeholder="第一个数字">
+<input id="second-number" type="number" value="0" placeholder="第二个数字">
+<button id="add-btn">加</button>
+<button id="minus-btn">减</button>
+<button id="times-btn">乘</button>
+<button id="divide-btn">除</button>
+<p id="result">运算结果</p>
+<script>
+    var a = document.getElementById("first-number"), b = document.getElementById("second-number");
+    var button = document.querySelectorAll("button");
+    for (var i = 0; i < button.length; i++){
+        button[i].onclick = function (event) {
+            if ( isNotANumber(a.value) && isNotANumber(b.value)){
+                if (Number(b.value) == 0 && event.target.id == "divide-btn") {
+                    alert("除数不能为零")
+                } else {
+                    calculate(a, b, event.target.id);
+                }
+            } else {
+                alert("输入存在问题，请纠正")
+            }
+        }
+    }
+
+    function isNotANumber(inputData) {
+        if (parseFloat(inputData).toString() == "NaN") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    function calculate(num1,num2,func) {
+        var result = func;
+        num1 = Number(num1.value);
+        num2 = Number(num2.value);
+        switch (func) {
+            case "add-btn": result = num1 + num2; break;
+            case "minus-btn": result = num1 - num2; break;
+            case "times-btn": result = num1 * num2; break;
+            case "divide-btn": result = num1 / num2; break;
+            default: result = "There are some bugs";
+        }
+        document.getElementById("result").innerText ="运算结果是： " + result;
+    }
+
+</script>
+</body>
+</html>

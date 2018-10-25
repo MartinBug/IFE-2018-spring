@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>九九乘法表</title>
+</head>
+<body>
+
+<script>
+    var outputLine = "";
+    for (var n = 1; n < 10; n++) {
+        for (var m = 1; m < n + 1; m++) {
+            outputLine += (n * m);
+            if (m < n) {
+                outputLine += ",";
+            } else {
+                outputLine += "."
+            }
+        }
+        outputLine += "\n";
+    }
+    console.log(outputLine);
+
+    var table = document.createElement("table");
+    var html = document.querySelector("html");
+    var head = document.createElement("h2");
+    html.appendChild(head);
+    head.innerText = "九九乘法表";
+    html.appendChild(table);
+
+
+    for (var n = 1; n < 10; n++) {
+        var tr = document.createElement('tr');
+        table.appendChild(tr);
+        for (var m = 1; m < 10; m++) {
+            var td = document.createElement("td");
+            if (m < n + 1) {
+                td.innerText = "" + n * m;
+            } else {
+                td.innerText = "";
+            }
+            tr.appendChild(td);
+        }
+    }
+
+</script>
+
+</body>
+</html>

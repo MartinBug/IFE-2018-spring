@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div>
+  <label>String A:
+    <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+  </label>
+  <textarea id="str-a"></textarea>
+  <label>String B:
+    <input id="radio-b" type="radio" name="str-obj" value="b">
+  </label>
+  <textarea id="str-b"></textarea>
+  <label>Num A：<input id="num-a" type="number" value="0"></label>
+  <label>Num B：<input id="num-b" type="number" value="1"></label>
+</div>
+<div>
+  <button>获取当前选中输入的内容长度</button>
+  <button>当前选中输入中的第3个字符</button>
+  <button>把两个输入框的文字连接在一起输出（concat）</button>
+  <button>输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+  <button>输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+  <button>使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+  <button>当前选中输入框的行数</button>
+  <button>使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+  <button>把所选输入框中的内容全部转为大写</button>
+  <button>把所选输入框中的内容全部转为小写</button>
+  <button>把所选输入框中内容的半角空格全部去除</button>
+  <button>把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+</div>
+<p id="result"></p>
+
+
+<script>
+    var numA = document.getElementById("num-a");
+    var numB = document.getElementById("num-b");
+    var radioA = document.getElementById("radio-a");
+    var radioB = document.querySelector("#radio-b");
+    var result = document.getElementById("result");
+
+    var textA = document.getElementById("str-a");
+    var textB = document.getElementById("str-b");
+
+    var body = document.querySelector("body");
+    body.onclick = function (evt) {
+        evt = evt || window.event;
+        target = evt.target || evt.srcElement;
+        // debugger
+        if (target.tagName.toLowerCase() === "button") {
+            result.innerText = "";
+            switch (target.innerText) {
+                case "获取当前选中输入的内容长度": {
+                    checkChoose() ? (result.innerText = selectTextAB(chooseWhich()).length) : null;
+                }
+                    break;
+                case "当前选中输入中的第3个字符": {
+                    if (checkChoose()) {
+                        result.innerText = (selectTextAB(chooseWhich()).length > 3) ? selectTextAB(chooseWhich())[2] : "当前选中的输入字符串长度小于3，无法输出第三个字符";
+                    }
+                }
+                    break;
+                case "把两个输入框的文字连接在一起输出（concat）": {
+                    result.innerText = concat(textA.value, textB.value);
+                }
+                    break;
+                case "输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）": {
+                    result.innerText =
+                        (textA.value.indexOf(textB.value) > -1) ?
+                            ("输入B中的内容，在输入A的内容中第一次出现的位置:" + (textA.value.indexOf(textB.value) + 1)) :
+                            ("输入B中的内容，在输入A的内容中meiyou出现过；");
+                }
+                    break;
+                case "输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）": {
+                    result.innerText =
+                        (textA.value.lastIndexOf(textB.value) > -1) ?
+                            ("输入B中的内容，在输入A的内容中最后次出现的位置:" + (textA.value.lastIndexOf(textB.value) + 1)) :
+                            ("输入B中的内容，在输入A的内容中meiyou出现过；");
+                }
+                    break;
+                case "当前选中输入框的行数": {
+                    let count = 0;
+                    let preN = -1;
+                    debugger
+                    if (checkChoose()) {
+                        while (true) {
+                            preN = selectTextAB(chooseWhich()).indexOf("\n", preN + 1);
+                            // preN > -1 ? (count++) : ( null break);
+                            if (preN > -1) {
+                                count++;
+                            } else {
+                                break;
+                            }
+                        }
+                        result.innerText = "当前选中输入框的行数wei: " + count;
+                    }
+                }
+                    break;
+                case "使用slice获取选中输入框内容的部分内容，参数为num-a及num-b": {
+                    // checkChoose() ? (result.innerText = selectTextAB(chooseWhich()).length) : null;
+                    // numCheck(chooseWhich());
+                    if (numCheck(numA.value, "A", 1) & numCheck(numB.value, "B", 1)) {
+                        switch (true) {
+                            case (Number(numA.value) > Number(numB.value) || Number(numA.value) === 0) : {
+                                result.innerText = "要求NumB >= NumA > 0，请重新输入";
+                            }
+                                break;
+                            case (selectTextAB(chooseWhich()).length < Number(numB.value)) : {
+                                result.innerText = "选中输入框的文本长度过短";
+                            }
+                                break;
+                            case true : {
+                                console.log(selectTextAB(chooseWhich()));
+                                result.innerText = "选中输入框内容从第" + numA.value + "位到" + numB.value + "位内容为" +
+                                    selectTextAB(chooseWhich()).slice(Number(numA.value) - 1, Number(numB.value) - 1) +
+                                    selectTextAB(chooseWhich())[Number(numB.value) - 1];
+                            }
+                                break;
+                        }
+                    }
+                }
+                    break;
+                case "使用substr获取选中输入框内容的子字符串，参数为num-a及num-b": {
+                    // checkChoose() ? (result.innerText = selectTextAB(chooseWhich()).length) : null;
+                    // numCheck(chooseWhich());
+                    if (numCheck(numA.value, "A", 1) & numCheck(numB.value, "B", 1)) {
+                        switch (true) {
+                            case (Number(numA.value) > Number(numB.value) || Number(numA.value) === 0) : {
+                                result.innerText = "要求NumB >= NumA > 0，请重新输入";
+                            }
+                                break;
+                            case (selectTextAB(chooseWhich()).length < Number(numB.value)) : {
+                                result.innerText = "选中输入框的文本长度过短";
+                            }
+                                break;
+                            case true : {
+                                console.log(selectTextAB(chooseWhich()));
+                                result.innerText = "选中输入框内容从第" + numA.value + "位到" + numB.value + "位内容为" +
+                                    selectTextAB(chooseWhich()).substr(Number(numA.value) - 1, Number(numB.value) - Number(numA.value) + 1);
+                            }
+                                break;
+                        }
+                    }
+                }
+                    break;
+                case "把所选输入框中的内容全部转为大写": {
+                    if (checkChoose()) {
+                        result.innerText = selectTextAB(chooseWhich()).toUpperCase();
+                    }
+                }
+                    break;
+                case "把所选输入框中的内容全部转为小写": {
+                    if (checkChoose()) {
+                        result.innerText = selectTextAB(chooseWhich()).toLowerCase();
+                    }
+                }
+                    break;
+                case "把所选输入框中内容的半角空格全部去除": {
+                    if (checkChoose()) {
+                        result.innerText = selectTextAB(chooseWhich()).replace(/ /g, "");
+                    }
+                }
+                    break;
+                case "把所选输入框中内容的a全部替换成另外一个输入框中的内容": {
+                    if (checkChoose()) {
+                        result.innerText = selectTextAB(chooseWhich()).replace(/a/g, selectTheOtherText(chooseWhich()));
+                    }
+                }
+                    break;
+                default:{
+                    return 0;
+                }
+                    break;
+            }
+        }
+    }
+
+
+    function chooseWhich() {
+        if (radioA.checked) {
+            return "A"
+        } else if (radioB.checked) {
+            return "B"
+        } else {
+            return 0;
+        }
+    }
+
+    function selectNumAB(str) {
+        if (str === "A") {
+            return numA.value;
+        } else if (str === "B") {
+            return numB.value;
+        } else {
+            return 0;
+        }
+    }
+
+    function isNotANumber(str) {
+        // debugger
+        let c = !(parseFloat(str).toString() === "NaN");
+        return (!(parseFloat(str).toString() === "NaN"));
+        //字符串str不是数字返回false，是数字返回true
+    }
+
+    function isNotAPositiveInt(str) {
+        return (Number(str) % 1 === 0 && Number(str) >= 0);
+        //是非负整数返回 true，其他返回false
+    }
+
+    function numCheck(num, str, integerFlag) {
+        //num 为string类型
+        //单纯检查是否是数字，或者检测是不是非负整数，是返回true，不是返回false
+        //Flag为1表示要检测，是不是_非负整数
+        // debugger
+        if (integerFlag) {
+            if (isNotAPositiveInt(num)) {
+                // if (Number(parseFloat(num)) > 80) {
+                //     result.innerText += "要求的小数位数太多啦，不要这么贪心嘛；\n";
+                //     console.log("输入 + str + 是_正整数_，但数值过大")
+                //     return false;
+                // } else {
+                return true;
+                // }
+            } else {
+                console.log("输入 Num" + str + "不是_正整数_");
+                result.innerText += "输入 Num " + str + "不是_正整数_；\n";
+                return false;
+            }
+        }
+        else {
+            if (isNotANumber(num)) {
+                return true;
+            } else {
+                result.innerText += "输入的 Num " + str + "不是数字。请检查输入;\n";
+                console.log("输入" + str + "不是数字")
+                return false;
+            }
+        }
+    }
+
+    //-------------------------------------------
+    function selectTextAB(str) {
+        if (str === "A") {
+            return textA.value;
+        } else if (str === "B") {
+            return textB.value;
+        } else {
+            return 0;
+        }
+    }
+
+    function checkChoose() {
+        if (chooseWhich() == 0) {
+            result.innerText = "当前没有选中输入框"
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function selectTheOtherText(str) {
+        if (str === "A") {
+            return textB.value;
+        } else if (str === "B") {
+            return textA.value;
+        } else {
+            return 0;
+        }
+    }
+
+
+</script>
+</body>
+
+
+</html>

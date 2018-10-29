@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number</title>
+</head>
+<body>
+<div>
+  <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+  <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+</div>
+<div>
+  <button>判断当前选中的输入框输入内容是否为数字</button>
+  <button>把 A 四舍五入为 B 个小数位数的数字</button>
+  <button>当前选中数字的绝对值</button>
+  <button>对当前选中的数字进行上舍入</button>
+  <button>对当前选中的数字进行下舍入</button>
+  <button>把当前选中的数字四舍五入为最接近的整数</button>
+  <button>返回 A 和 B 中的最高值</button>
+  <button>返回 A 和 B 中的最低值</button>
+</div>
+<p id="result"></p>
+
+<script>
+    var numA = document.getElementById("num-a");
+    var numB = document.getElementById("num-b");
+    var radioA = document.getElementById("radio-a");
+    var radioB = document.querySelector("#radio-b");
+    var result = document.getElementById("result");
+
+    var body = document.querySelector("body");
+    body.onclick = function (evt) {
+        evt = evt || window.event;
+        target = evt.target || evt.srcElement;
+        // debugger
+        if (target.tagName.toLowerCase() === "button") {
+            result.innerText = "";
+            switch (target.innerText) {
+                case "判断当前选中的输入框输入内容是否为数字": {
+                    if (chooseWhich() == 0) {
+                        result.innerText = "当前没有选中输入框";
+                    } else if (inputCheck(selectNumAB(chooseWhich()) , chooseWhich(), 0)) {
+                        result.innerText = "当前选中的输入框输入内容_是_数字";
+                    } else {
+                        result.innerText = "当前选中的输入框输入内容_bu是_数字";
+                    }
+                }
+                    break;
+                case "把 A 四舍五入为 B 个小数位数的数字": {
+                    if (inputCheck(numA.value, "A", 0) & inputCheck(numB.value, "B", 1)) {
+                        result.innerText = "把 A 四舍五入结果为" + parseFloat(numA.value).toFixed(parseInt(numB.value));
+                    }
+                }
+                    break;
+                case "当前选中数字的绝对值":{
+                    if (chooseWhich() == 0) {
+                        result.innerText = "当前没有选中输入框";
+                    } else if (inputCheck(selectNumAB(chooseWhich()) , chooseWhich(), 0)) {
+                        result.innerText += "绝对值为" + Math.abs(parseFloat( selectNumAB(chooseWhich())));
+                    }
+                    // inputCheck()
+                }
+                    break;
+                case "对当前选中的数字进行上舍入":{
+                    if (chooseWhich() == 0) {
+                        result.innerText = "当前没有选中输入框";
+                    } else if (inputCheck(selectNumAB(chooseWhich()) , chooseWhich(), 0)) {
+                        result.innerText += "向上舍入为" + (Math.floor(parseFloat( selectNumAB(chooseWhich()))) + 1);
+                    }
+                }
+                    break;
+                case "对当前选中的数字进行下舍入":{
+                    if (chooseWhich() == 0) {
+                        result.innerText = "当前没有选中输入框";
+                    } else if (inputCheck(selectNumAB(chooseWhich()) , chooseWhich(), 0)) {
+                        result.innerText += "向上舍入为" + Math.floor(parseFloat( selectNumAB(chooseWhich())));
+                    }
+                }
+                    break;
+                case "把当前选中的数字四舍五入为最接近的整数":{
+                    if (chooseWhich() == 0) {
+                        result.innerText = "当前没有选中输入框";
+                    } else if (inputCheck(selectNumAB(chooseWhich()) , chooseWhich(), 0)) {
+                        result.innerText += "四舍五入为最近整数结果为" + parseFloat(numA.value).toFixed(0);
+                    }
+                }
+                    break;
+                case "返回 A 和 B 中的最高值":{
+                    if (inputCheck(numA.value, "A", 0) & inputCheck(numB.value, "B", 0)) {
+                        if (parseFloat(numA.value) !== parseFloat(numB.value)) {
+                            // let max = (parseFloat(numA.value) > parseFloat(numB.value))? parseFloat(numA.value):parseFloat(numB.value);
+                            // result.innerText += "A 和 B 中的最高值为" + max + "\n";
+                            result.innerText += "A 和 B 中的最高值为" + ((parseFloat(numA.value) > parseFloat(numB.value))? parseFloat(numA.value):parseFloat(numB.value)) + "\n";
+                        } else {
+                        result.innerText += "A 和 B 一样大，数值为" + parseFloat(numA.value);
+                        }
+                    }
+                }
+                    break;
+                case "返回 A 和 B 中的最低值":{
+                    if (inputCheck(numA.value, "A", 0) & inputCheck(numB.value, "B", 0)) {
+                        if (parseFloat(numA.value) !== parseFloat(numB.value)) {
+                            result.innerText += "A 和 B 中的最低值为" + ((parseFloat(numA.value) < parseFloat(numB.value))? parseFloat(numA.value):parseFloat(numB.value)) + "\n";
+                        } else {
+                            result.innerText += "A 和 B 一样大，数值为" + parseFloat(numA.value);
+                        }
+                    }
+                }
+                    break;
+                default:
+                    result.innerText = "";
+            }
+        }
+    }
+
+
+    function chooseWhich() {
+        if (radioA.checked) {
+            return "A"
+        } else if (radioB.checked) {
+            return "B"
+        } else {
+            return 0;
+        }
+    }
+    function selectNumAB(str) {
+        if (str === "A") {
+            return numA.value;
+        } else if (str === "B") {
+            return numB.value;
+        } else {
+            return 0;
+        }
+    }
+    function isNotANumber(str) {
+        // debugger
+        let c =!(parseFloat(str).toString() === "NaN");
+        return (!(parseFloat(str).toString() === "NaN"));
+        //字符串str不是数字返回false，是数字返回true
+    }
+
+    function isNotAPositiveInt(str) {
+        return (Number(str) % 1 === 0 && Number(str) >= 0);
+        //是非负整数返回 true，其他返回false
+    }
+
+    function inputCheck(num, str, integerFlag) {
+        //num 为string类型
+        //单纯检查是否是数字，或者检测是不是非负整数，是返回true，不是返回false
+        //Flag为1表示要检测，是不是_非负整数
+        // debugger
+        if (integerFlag && str == "B") {
+            if (isNotAPositiveInt(num)) {
+                if (Number(parseFloat(num)) > 80) {
+                    result.innerText += "要求的小数位数太多啦，不要这么贪心嘛；\n";
+                    console.log("输入 + str + 是_正整数_，但数值过大")
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                console.log("输入" + str + "不是_正整数_");
+                result.innerText += "输入" + str + "不是_正整数_；\n";
+                return false;
+            }
+        }
+        else {
+            if (isNotANumber(num)) {
+                return true;
+            } else {
+                result.innerText += "输入" + str + "不是数字。请检查输入;\n";
+                console.log("输入" + str + "不是数字")
+                return false;
+            }
+        }
+    }
+
+
+</script>
+</body>
+</html>

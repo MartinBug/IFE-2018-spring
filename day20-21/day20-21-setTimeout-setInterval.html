@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+<button id="fade-btn">淡出</button>
+
+<script>
+    // opacity:0.4;
+    // document.getElementById("fade-obj").style.cssText
+    var time = 0;
+    var fadeTimerId;
+    var fadeCssText = document.getElementById("fade-obj").style.cssText;
+    // debugger
+    // var c =    fadeCssText.substring(fadeCssText.indexOf("background"));
+    //     var d = fadeCssText.replace(c,"");
+    fadeCssText = fadeCssText.replace(fadeCssText.substring(fadeCssText.indexOf("background")), "");
+    document.getElementById("fade-btn").onclick = function () {
+        document.getElementById("fade-btn").onclick = null;
+        document.getElementById("fade-btn").innerText = "淡入淡入淡入";
+        fade();
+    };
+    document.getElementById("fade-btn").onclick = fadeBtnEvent;
+
+    function fadeBtnEvent() {
+        document.getElementById("fade-btn").onclick = null;
+        document.getElementById("fade-btn").innerText = "淡入淡入淡入";
+        fadeOut();
+        document.getElementById("fade-btn").onclick = function () {
+            document.getElementById("fade-btn").onclick = null;
+            document.getElementById("fade-btn").innerText = "淡出";
+            fadeIn();
+            document.getElementById("fade-btn").onclick = fadeBtnEvent;
+        }
+    }
+
+    function fadeOut() {
+        document.getElementById("fade-obj").style.cssText = fadeCssText + "background: rgba(255,51,51," + (time * 0.1) + ");";
+        time++;
+        console.log(fadeCssText + "rgba(255,255,0," + (time * 0.15) + ");");
+        fadeTimerId = setTimeout(fadeOut, 100);
+        if (time > 9) {
+            clearTimeout(fadeTimerId);
+        }
+    }
+
+    function fadeIn() {
+        document.getElementById("fade-obj").style.cssText = fadeCssText + "background: rgba(255,51,51," + (time * 0.1) + ");";
+        time--;
+        console.log(fadeCssText + "rgba(255,255,0," + (time * 0.15) + ");");
+        fadeTimerId = setTimeout(fadeIn, 100);
+        if (time <1) {
+            clearTimeout(fadeTimerId);
+        }
+    }
+
+</script>
+
+</body>
+</html>

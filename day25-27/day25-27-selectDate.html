@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<select id="year-select">
+</select>
+
+<select id="month-select">
+</select>
+
+<select id="day-select">
+</select>
+
+<select id="hour-select">
+</select>
+
+<select id="minute-select">
+</select>
+
+<select id="second-select">
+</select>
+
+<p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+
+
+<script>
+    var secondSelect = document.getElementById("second-select");
+    var minuteSelect = document.getElementById("minute-select");
+    var hourSelect = document.getElementById("hour-select");
+    var daySelect = document.getElementById("day-select");
+    var monthSelect = document.getElementById("month-select");
+    var yearSelect = document.getElementById("year-select");
+    var result = document.getElementById("result-wrapper");
+    addSecond();
+    addMinute();
+    addHour();
+    addMonth();
+    addYear();
+    addDays(returnDays());
+    displayResult(calculateTime(creatDate()));
+
+    body = document.getElementsByTagName("body");
+    body[0].onchange = function () {
+        displayResult(calculateTime(creatDate()));
+
+        var postSelectedDay = daySelect.value;
+        addDays(returnDays());//由于选择的月份数可能导致单月天数的改变，需要再设置一下day的option
+        dayReload(postSelectedDay);
+
+    }
+
+    function dayReload(postSelectedDay) {
+        if (Number(postSelectedDay) < daySelect.length) {
+            daySelect.value = postSelectedDay;
+        }
+    }
+
+    function calculateTime(date2) {
+        var date1 = new Date();
+        return date2.getTime() - date1.getTime();
+    }
+
+    function creatDate() {
+        var date = new Date();
+        date.setDate(Number(daySelect.value));
+        date.setFullYear(Number(yearSelect.value));
+        date.setMonth(Number(monthSelect.value) - 1);
+        date.setHours(Number(hourSelect.value));
+        date.setMinutes(Number(minuteSelect.value));
+        date.setSeconds(Number(secondSelect.value));
+        return date;
+    }
+
+    function displayResult(time) {
+        var date = new Date();
+        date.setDate(Number(daySelect.value));
+        date.setFullYear(Number(yearSelect.value));
+        date.setMonth(Number(monthSelect.value) - 1);
+
+        show7Days(date.getDay())
+        result.innerText = "现在距离 "
+            + yearSelect.value + "年"
+            + monthSelect.value + "月"
+            + daySelect.value + "日"
+            + show7Days(date.getDay())
+            + hourSelect.value + ":"
+            + minuteSelect.value + ":"
+            + secondSelect.value + " ";
+
+        time = Math.floor(time / 1000);
+        if (time > 0) {
+            result.innerText += "    还有"
+                + Math.floor(time / (24 * 3600)) + "天"
+                + Math.floor((time % (24 * 3600)) / 3600) + "小时"
+                + Math.floor((time % 3600) / 60) + "分"
+                + Math.floor(time % 60) + "秒";
+        } else {
+            time *= -1;
+            result.innerText += "    已经过去"
+                + Math.floor(time / (24 * 3600)) + "天"
+                + Math.floor((time % (24 * 3600)) / 3600) + "小时"
+                + Math.floor((time % 3600) / 60) + "分"
+                + Math.floor(time % 60) + "秒";
+        }
+    }
+
+    function show7Days(day) {
+        switch (day) {
+            case 0 :
+                return "Sunday";
+            case 1:
+                return "Monday";
+            case 2:
+                return "Tuesday";
+            case 3:
+                return "Wednesday";
+            case 4:
+                return "Thursday";
+            case 5:
+                return "Friday";
+            case 6:
+                return "Saturday";
+        }
+    }
+
+    function addSecond() {
+        var i;
+        secondSelect.innerHTML = "";
+        for (i = 0; i < 60; i++) {
+            let secondOp = document.createElement("option");
+            secondOp.value = i;
+            secondOp.innerText = i > 9 ? i : "0" + i;
+            secondSelect.appendChild(secondOp);
+        }
+    }
+
+    function addMinute() {
+        var i;
+        minuteSelect.innerHTML = "";
+        for (i = 0; i < 60; i++) {
+            let minuteOp = document.createElement("option");
+            minuteOp.value = i;
+            minuteOp.innerText = i > 9 ? i : "0" + i;
+            minuteSelect.appendChild(minuteOp);
+        }
+    }
+
+    function addHour() {
+        var i;
+        hourSelect.innerHTML = "";
+        for (i = 0; i < 24; i++) {
+            let hourOp = document.createElement("option");
+            hourOp.value = i;
+            hourOp.innerText = i > 9 ? i : "0" + i;
+            hourSelect.appendChild(hourOp);
+        }
+    }
+
+    function addMonth() {
+        var i;
+        monthSelect.innerHTML = "";
+        for (i = 1; i < 13; i++) {
+            let monthOp = document.createElement("option");
+            monthOp.value = i;
+            monthOp.innerText = i;
+            monthSelect.appendChild(monthOp);
+        }
+    }
+
+    function addYear() {
+        var i;
+        yearSelect.innerHTML = "";
+        for (i = 0; i < 33; i++) {
+            let yearOp = document.createElement("option");
+            yearOp.value = (2000 + i);
+            yearOp.innerText = (2000 + i);
+            yearSelect.appendChild(yearOp);
+        }
+    }
+
+    function addDays(n) {
+        daySelect.innerHTML = "";
+        var i;
+        for (i = 1; i < n + 1; i++) {
+            let dayOp = document.createElement("option");
+            dayOp.value = i;
+            dayOp.innerText = i;
+            daySelect.appendChild(dayOp);
+        }
+    }
+
+    function returnDays() {
+        var year = Number(yearSelect.value);
+        switch (Number(monthSelect.value)) {
+            case 1:
+                return 31;
+            case 3:
+                return 31;
+            case 4:
+                return 30;
+            case 5:
+                return 31;
+            case 6:
+                return 30;
+            case 7:
+                return 31;
+            case 8:
+                return 31;
+            case 9:
+                return 30;
+            case 10:
+                return 31;
+            case 11:
+                return 30;
+            case 12:
+                return 31;
+            case 2: {
+                if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+                    return 29;
+                } else {
+                    return 28;
+                }
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

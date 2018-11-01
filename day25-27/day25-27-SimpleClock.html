@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<p id="clock1"></p>
+<p id="clock2"></p>
+
+
+<script>
+
+    var year, date, month, hours, minutes, seconds;
+
+    function addZero(timeType) {
+        switch (timeType) {
+            case "month": {
+                return month > 9 ? month.toString() : ("0" + month.toString());
+            }
+                break;
+            case"hours": {
+                return hours > 9 ? hours.toString() : ("0" + hours.toString());
+            }
+                break;
+            case"minutes": {
+                return minutes > 9 ? minutes.toString() : ("0" + minutes.toString());
+            }
+                break;
+            case"seconds": {
+                return seconds > 9 ? seconds.toString() : ("0" + seconds.toString());
+            }
+                break;
+            default:
+                break;
+        }
+    }
+
+    setInterval(display3, 1000);
+
+    function display1() {
+        var completeTime = new Date();
+        var sevenDay = function () {
+            return (completeTime.getDay() === 0) ? "天" : completeTime.getDay().toString();
+        }
+        year = completeTime.getFullYear();
+        date = completeTime.getDate() + 1;
+        month = completeTime.getMonth() + 1;
+        hours = completeTime.getHours();
+        minutes = completeTime.getMinutes();
+        seconds = completeTime.getSeconds();
+        document.getElementById("clock1").innerText = year.toString() + "年"
+            + addZero("month") + "月"
+            + date.toString() + "日"
+            + "星期" + sevenDay() + "   "
+            + addZero("hours") + ":"
+            + addZero("minutes") + ":"
+            + addZero("seconds");
+    }
+
+
+    function display2() {
+        var completeTime = new Date();
+        var sevenDay = show7Days(completeTime.getDay());
+        year = completeTime.getFullYear();
+        date = completeTime.getDate() + 1;
+        month = completeTime.getMonth() + 1;
+        // completeTime.setHours(22);
+        hours = completeTime.getHours();
+        minutes = completeTime.getMinutes();
+        seconds = completeTime.getSeconds();
+        var ampm = hours > 12 ? "PM" : "AM";
+        hours = setHours(hours);
+        document.getElementById("clock2").innerText = year.toString() + "-"
+            + addZero("month") + "-"
+            + date.toString()
+            + sevenDay + "   "
+            + addZero("hours") + ":"
+            + addZero("minutes") + ":"
+            + addZero("seconds")
+            + ampm;
+    }
+function display3() {
+        display1();
+        display2();
+}
+
+
+function show7Days(day) {
+    switch (day) {
+        case 0 :
+            return "Sunday";
+        case 1:
+            return "Monday";
+        case 2:
+            return "Tuesday";
+        case 3:
+            return "Wednesday";
+        case 4:
+            return "Thursday";
+        case 5:
+            return "Friday";
+        case 6:
+            return "Saturday";
+    }
+}
+    function setHours(hours) {
+        return hours > 12 ? hours - 12 : hours;
+    }
+
+
+
+
+</script>
+</body>
+</html>

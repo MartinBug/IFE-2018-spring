@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input id="stack-input" type="text">
+<p id="stack-cont">栈内容：applel&lt;-pear</p>
+<button id="push-btn">进栈</button>
+<button id="pop-btn">退栈</button>
+<button id="font-btn">打印栈顶元素内容</button>
+<button id="empty-btn">判断栈是否为空</button>
+
+<script>
+
+    var stack = ["apple", "pear"];
+    var input = document.querySelector("#stack-input");
+    var resultStack = document.querySelector("#stack-cont");
+    var body = document.getElementsByTagName("body");
+    const stackLength = 5;
+
+    body[0].onclick = function (evt) {
+        evt = evt ? evt : window.event;
+        target = evt.target || evt.srcElement;
+        // debugger
+        console.log(target.tagName);
+        console.log(target.tagName.toLowerCase());
+//堆栈顶部对应数组中最后一个元素
+        if (target.tagName.toLowerCase() == "button") {
+            switch (target.id) {
+                case "push-btn": {
+                    if(stack.length <stackLength){
+                        stack.unshift(input.value);
+                        resultStack.innerText = "堆栈内容：" + stack.join("<-");
+                    } else {
+                        resultStack.innerText = "堆栈已经满了，放不下了。\n堆栈内容：" + stack.join("<-");
+                    }
+                }
+                    break;
+                case  "pop-btn": {
+                    stack.shift();
+                    resultStack.innerText = "堆栈内容：" + stack.join("<-");
+                }
+                    break;
+                case  "font-btn": {
+                    console.log(stack[stack.length - 1]);
+                    if (stack.length > 0) {
+                        resultStack.innerText += "\n堆栈顶部元素内容为" + stack[0];
+                    } else {
+                        resultStack.innerText += "\n堆栈为空";
+                    }
+
+                }
+                    break;
+                case "empty-btn": {
+                    resultStack.innerText += stack.length > 0 ? "\n堆栈不为空" : "\n堆栈为空";
+                }
+                    break;
+                default:
+                    console.log("事件判断出错");
+            }
+        }
+    }
+
+
+
+</script>
+</body>
+</html>

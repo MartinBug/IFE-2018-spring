@@ -110,7 +110,6 @@
     // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
     function getListWithLDR() {
         function midtraversal(obj) {
-            debugger
             if (obj !== undefined){
                 //中序，左根右
                 midtraversal(obj.left);
@@ -126,7 +125,6 @@ getListWithLDR();
     // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
     function getListWithLRD() {
         function posttraversal(obj) {
-            debugger
             if (obj !== undefined){
                 //后续，左右根
                 posttraversal(obj.left);
@@ -138,6 +136,13 @@ getListWithLDR();
         midtraversal(tree);
 
     }
+
+
+    var c= "333-23-33";
+    console.log(c.match(/\d+/g));
+    console.log(c.match(/\d+/g).length);
+    console.log(c.replace("333","").match(/\d+/g));
+    document.write(c.match(/\d+/g));
 
 </script>
 </body>

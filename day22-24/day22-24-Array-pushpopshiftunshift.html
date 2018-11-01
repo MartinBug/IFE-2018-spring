@@ -5,6 +5,60 @@
   <title>Title</title>
 </head>
 <body>
+<input id="queue-input" type="text">
+<p id="queue-cont">队列内容：apple&lt;-pear</p>
+<button id="in-btn">入队</button>
+<button id="out-btn">出队</button>
+<button id="font-btn">打印队头元素内容</button>
+<button id="empty-btn">判断队列是否为空</button>
 
+<script>
+
+    var queue = ["apple", "pear"];
+    var input = document.querySelector("#queue-input");
+    var resultQueue = document.querySelector("#queue-cont");
+    var body = document.getElementsByTagName("body");
+    // var
+
+    body[0].onclick = function (evt) {
+        evt = evt ? evt : window.event;
+        target = evt.target || evt.srcElement;
+        // debugger
+        console.log(target.tagName);
+        console.log(target.tagName.toLowerCase());
+
+        if (target.tagName.toLowerCase() == "button") {
+            switch (target.id) {
+                case "in-btn": {
+                    queue.push(input.value);
+                    resultQueue.innerText = "队列内容：" + queue.join("<-");
+                }
+                    break;
+                case  "out-btn": {
+                    queue.shift();
+                    resultQueue.innerText = "队列内容：" + queue.join("<-");
+                }
+                    break;
+                case  "font-btn": {
+                    console.log(queue[queue.length - 1]);
+                    if (queue.length > 0) {
+                    resultQueue.innerText += "\n队头元素内容为" + queue[queue.length - 1];
+                    } else {
+                        resultQueue.innerText += "\n队列为空，没有队头元素";
+                    }
+
+                }
+                    break;
+                case "empty-btn": {
+                    resultQueue.innerText += queue.length > 0 ? "\n队列不为空" : "\n队列为空";
+                }
+                    break;
+                default:
+                    console.log("事件判断出错");
+            }
+        }
+    }
+
+</script>
 </body>
 </html>

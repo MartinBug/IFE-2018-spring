@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mail</title>
+  <style>
+    .email-sug {
+      /*display: none;*/
+      /*visibility: visible;*/
+    }
+
+    .email-sug-display {
+      /*display: none;*/
+      visibility: visible;
+    }
+
+    .email-sug-display :hover {
+      background-color: #2fa0ec;
+    }
+
+    .email-sug-hidden {
+      /*visibility: hidden;*/
+      display: none;
+    }
+
+    .li-selected {
+      background-color: darksalmon;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <input id="email-input" type="text">
+  <ul id="email-sug-wrapper" class="email-sug"></ul>
+</div>
+<script>
+    var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+    var cssObject = document.getElementsByTagName("style");
+    cssObject = cssObject[0];
+    var input = document.getElementById("email-input");
+    var ul = document.getElementById("email-sug-wrapper");
+    var div = document.querySelector(".wrapper");
+
+    function checkInput() {
+        return (input.value.replace(/\s+/g, "") !== "");
+    }
+
+    function trim(string) {
+        //字符串前后去空格
+        return string.replace(/(^\s*)|(\s*$)/g, "");
+    }
+
+    function addList(string) {
+        var frontString;
+        var latterString;
+        var flag = 0;
+        // console.log(string.indexOf("@"))
+        if (string.indexOf("@") > -1) {
+            frontString = string.slice(0, string.indexOf("@"));
+            if (string.indexOf("@") < string.length - 1) {
+                latterString = string.substring(string.indexOf("@") + 1);
+            }
+        } else {
+            frontString = string;
+        }
+        for (var i = 0; i < postfixList.length; i++) {
+            if (postfixList[i].indexOf(latterString) > -1) {
+                flag = 1;
+                //latterString = undefined 也会让flag=1，但是后续的代码让这个无影响。
+            }
+        }
+        for (var i = 0; i < postfixList.length; i++) {
+            let li = document.createElement("li");
+            li.className = "email-sug";
+            // li.innerText = frontString + "@" + postfixList[i];
+            li.innerText = htmlEncodeByRegExp(frontString) + "@" + postfixList[i];
+            if (flag) {
+                if (postfixList[i].indexOf(latterString) > -1) {
+                    ul.appendChild(li);
+                }
+            } else {
+                ul.appendChild(li);
+            }
+        }
+        // ul.firstChild.className = "li-selected";
+        ul.childNodes.item(nowSelectTipIndex).className = "li-selected";
+    }
+
+    function deleteList() {
+        var childs = ul.childNodes;
+        for (var i = childs.length - 1; i > -1; i--) {
+            // console.log(childs[i].nodeName);
+            ul.removeChild(childs[i]);
+        }
+    }
+
+    function displayEmailSugWrapper() {
+        // ul.style.cssText = "visibility: visible;";
+        ul.className = "email-sug-display";
+    }
+
+    function hideEmailSugWrapper() {
+        // ul.style.cssText = "visibility: hidden;";
+        ul.className = "email-sug-hidden";
+    }
+
+    function htmlEncodeByRegExp(str) {
+        var s = "";
+        if (str.length == 0) return "";
+        s = str.replace(/&/g, "&");
+        s = s.replace(/</g, "<");
+        s = s.replace(/>/g, ">");
+        s = s.replace(/ /g, " ");
+        s = s.replace(/\'/g, "'");
+        s = s.replace(/\"/g, '"');
+        return s;
+    }
+
+    function htmlDecodeByRegExp(str) {
+        var s = "";
+        if (str.length == 0) return "";
+        s = str.replace(/&/g, "&");
+        s = s.replace(/</g, "<");
+        s = s.replace(/>/g, ">");
+        s = s.replace(/ /g, " ");
+        s = s.replace(/'/g, "\'");
+        s = s.replace(/"/g, "\"");
+        return s;
+    }
+
+    function searchListSelectedOne() {
+        var liItem = ul.childNodes;
+        for (var i = 0; i < liItem.length; i++) {
+            if (liItem[i].className == "li-selected") {
+                return i;
+            }
+        }
+    }
+
+    function resetSelected() {
+
+    }
+
+    input.onkeyup = function () {
+        var evt = event ? event : window.event;
+        // debugger
+        // //如果用onkeypress, keyup, keydown之类的实现，则需要检测一下keyCode
+        if (evt.keyCode !== 38 && evt.keyCode !== 40 && evt.keyCode !== 13 && evt.keyCode !== 108) {
+            console.log("不是3键");
+            nowSelectTipIndex = 0;
+            deleteList();
+            addList(trim(input.value));
+            checkInput() ? displayEmailSugWrapper() : hideEmailSugWrapper();
+        } else {
+            upDownKey();
+            deleteList();
+            addList(trim(input.value));
+            enterKey();
+            console.log("是3键");
+        }
+
+    }
+
+    div.addEventListener("click", function () {
+        var evt = event ? event : window.event;
+        var target = event.target || event.srcElement;
+        if (target.tagName.toLowerCase() === "li") {
+            // input.value = target.innerText;
+            input.value = htmlDecodeByRegExp(target.innerText);
+            hideEmailSugWrapper();
+            // deleteList();
+        }
+    })
+    // //基于dom
+    // div.addEventListener("keyup", function () {
+    //     var evt = event ? event : window.event;
+    //     // var target = event.target || event.srcElement;
+    //     switch (evt.keyCode) {
+    //         case 38: {
+    //             let num = searchListSelectedOne();
+    //             ul.childNodes.item(num).className = "";
+    //             ul.childNodes.item((num - 1 + ul.childNodes.length) % ul.childNodes.length).className = "li-selected";
+    //         }
+    //             break;
+    //         case 40: {
+    //             let num = searchListSelectedOne();
+    //             ul.childNodes.item(num).className = "";
+    //             ul.childNodes.item((num + 1 + ul.childNodes.length) % ul.childNodes.length).className = "li-selected";
+    //         }
+    //             break;
+    //         case 108: {
+    //             let num = searchListSelectedOne();
+    //             input.value = ul.childNodes.item(num).innerText;
+    //             hideEmailSugWrapper();
+    //         }
+    //             break;
+    //         case 13: {
+    //             let num = searchListSelectedOne();
+    //             input.value = ul.childNodes.item(num).innerText;
+    //             hideEmailSugWrapper();
+    //         }
+    //             break;
+    //     }
+    // })
+
+    //基于数据
+    var nowSelectTipIndex = 0;
+    function upDownKey() {
+        var evt = event ? event : window.event;
+        // debugger
+        switch (evt.keyCode) {
+            case 38: {
+                nowSelectTipIndex = (nowSelectTipIndex - 1 + ul.childNodes.length) % ul.childNodes.length;
+            }
+                break;
+            case 40: {
+                nowSelectTipIndex = (nowSelectTipIndex + 1 + ul.childNodes.length) % ul.childNodes.length;
+            }
+                break;
+            case 108: {
+                input.value = ul.childNodes.item(nowSelectTipIndex).innerText;
+                hideEmailSugWrapper();
+            }
+                break;
+            case 13: {
+                input.value = ul.childNodes.item(nowSelectTipIndex).innerText;
+                hideEmailSugWrapper();
+            }
+                break;
+        }
+    }
+    function enterKey() {
+        var evt = event ? event : window.event;
+        switch (evt.keyCode) {
+            case 108: {
+                input.value = ul.childNodes.item(nowSelectTipIndex).innerText;
+                hideEmailSugWrapper();
+            }
+                break;
+            case 13: {
+                input.value = ul.childNodes.item(nowSelectTipIndex).innerText;
+                hideEmailSugWrapper();
+            }
+                break;
+        }
+    }
+
+
+</script>
+
+</body>
+</html>
